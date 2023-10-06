@@ -1,0 +1,54 @@
+{
+  "name": "task-api-rest",
+  "version": "1.0.0",
+  "description": "Task API Rest",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "ts-node-dev --respawn --transpile-only --files 'src/'",
+    "start": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianosotos/task-api-rest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adrianosotos/task-api-rest/issues"
+  },
+  "homepage": "https://github.com/adrianosotos/task-api-rest#readme",
+  "dependencies": {
+    "@typegoose/typegoose": "^11.5.0",
+    "@types/swagger-jsdoc": "^6.0.1",
+    "@types/swagger-ui-express": "^4.1.4",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.9",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^7.5.4",
+    "redis": "^4.6.10",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.4",
+    "@types/config": "^3.3.1",
+    "@types/cookie-parser": "^1.4.4",
+    "@types/cors": "^2.8.14",
+    "@types/express": "^4.17.18",
+    "@types/jsonwebtoken": "^9.0.3",
+    "@types/lodash": "^4.14.199",
+    "@types/morgan": "^1.9.6",
+    "@types/node": "^20.8.2",
+    "morgan": "^1.10.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2"
+  }
+}
