@@ -28,7 +28,7 @@ export const listTasksSchema = object({});
 
 export const completeTaskSchema = object({
   body: object({
-    id: string(),
+    id: string()
   }),
 });
 
