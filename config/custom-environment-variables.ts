@@ -1,9 +1,8 @@
 export default {
-  dbName: 'MONGODB_USERNAME',
+  dbUsername: 'MONGODB_USERNAME',
   dbPass: 'MONGODB_PASSWORD',
+  dbName: 'MONGODB_DATABASE_NAME',
   accessTokenPrivateKey: 'ACCESS_TOKEN_PRIVATE_KEY',
   accessTokenPublicKey: 'ACCESS_TOKEN_PUBLIC_KEY',
-  refreshTokenPrivateKey: 'REFRESH_TOKEN_PRIVATE_KEY',
-  refreshTokenPublicKey: 'REFRESH_TOKEN_PUBLIC_KEY',
   port: 'APP_PORT'
 };
