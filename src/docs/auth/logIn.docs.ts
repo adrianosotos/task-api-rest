@@ -50,6 +50,23 @@ const loginAuth = {
     },
     '401': {
       description: 'Invalid email or password',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                example: 'fail'
+              },
+              message: {
+                type: 'string',
+                example: 'Invalid email or password'
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

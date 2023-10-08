@@ -126,10 +126,44 @@ const editTask = {
       }
     },
     '404': {
-      description: 'Task not found'
+      description: 'Task not found',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                example: 'fail'
+              },
+              message: {
+                type: 'string',
+                example: 'Task not found'
+              }
+            }
+          }
+        }
+      }
     },
     '400': {
-      description: 'Failed to update task'
+      description: 'Failed to update task',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                example: 'fail'
+              },
+              message: {
+                type: 'string',
+                example: 'Failed to update task'
+              }
+            }
+          }
+        }
+      }
     }
   }
 };

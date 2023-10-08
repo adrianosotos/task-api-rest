@@ -109,7 +109,24 @@ const createTask = {
       },
     },
     '400': {
-      description: 'Failed to create task'
+      description: 'Failed to create task',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                example: 'fail'
+              },
+              message: {
+                type: 'string',
+                example: 'Failed to create task'
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

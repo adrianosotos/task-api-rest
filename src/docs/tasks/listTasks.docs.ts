@@ -79,7 +79,24 @@ const listTasksHandler = {
       }
     },
     '400': {
-      description: 'Failed to list tasks'
+      description: 'Failed to list tasks',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                example: 'fail'
+              },
+              message: {
+                type: 'string',
+                example: 'Failed to list tasks'
+              }
+            }
+          }
+        }
+      }
     }
   }
 };

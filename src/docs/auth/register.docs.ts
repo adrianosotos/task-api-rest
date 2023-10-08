@@ -83,6 +83,23 @@ const registerAuth = {
     },
     '409': {
       description: 'Email already exists',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                example: 'fail'
+              },
+              message: {
+                type: 'string',
+                example: 'Email already exists'
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

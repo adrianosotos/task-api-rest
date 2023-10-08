@@ -112,7 +112,24 @@ const completeTaskHandler = {
       }
     },
     '400': {
-      description: 'Failed to complete task'
+      description: 'Failed to complete task',
+      content: {
+        'application/json': {
+          schema: {
+            type: 'object',
+            properties: {
+              status: {
+                type: 'string',
+                example: 'fail'
+              },
+              message: {
+                type: 'string',
+                example: 'Failed to complete task'
+              }
+            }
+          }
+        }
+      }
     }
   }
 };
