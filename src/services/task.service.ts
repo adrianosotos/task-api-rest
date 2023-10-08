@@ -6,6 +6,12 @@ export const createTask = async (input: Partial<Task>) => {
 }
 
 export const editTask = async (taskId: string, input: Partial<Task>) => {
+  const task = await taskModel.findOne({ _id: taskId, userId: input.userId });
+
+  if (!task) {
+    throw new Error('Task not found');
+  }
+
   const updatedTask = await taskModel.findByIdAndUpdate(
     taskId,
     { $set: input },
@@ -15,17 +21,29 @@ export const editTask = async (taskId: string, input: Partial<Task>) => {
   return updatedTask ? updatedTask.toJSON() : null;
 };
 
-export const deleteTask = async (taskId: string) => {
+export const deleteTask = async (taskId: string, userId: string) => {
+  const task = await taskModel.findOne({ _id: taskId, userId });
+
+  if (!task) {
+    throw new Error('Task not found');
+  }
+
   const deletedTask = await taskModel.findByIdAndDelete(taskId);
   return deletedTask ? deletedTask.toJSON() : null;
 };
 
-export const listTasks = async () => {
-  const tasks = await taskModel.find();
+export const listTasks = async (userId: string) => {
+  const tasks = await taskModel.find({ userId });
   return tasks.map((task) => task.toJSON());
 };
 
-export const completeTask = async (taskId: string) => {
+export const completeTask = async (taskId: string, userId: string) => {
+  const task = await taskModel.findOne({ _id: taskId, userId });
+
+  if (!task) {
+    throw new Error('Task not found');
+  }
+
   const updatedTask = await taskModel.findByIdAndUpdate(
     taskId,
     { completed: true },

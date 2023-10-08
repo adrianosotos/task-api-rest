@@ -1,4 +1,5 @@
-import { getModelForClass, modelOptions, prop } from "@typegoose/typegoose";
+import { Ref, getModelForClass, modelOptions, prop } from "@typegoose/typegoose";
+import { User } from "./user.model";
 
 @modelOptions({
   schemaOptions: {
@@ -20,6 +21,9 @@ export class Task {
 
   @prop({ default: false })
   completed?: boolean;
+
+  @prop({ ref: () => User })
+  userId!: Ref<User>;
 }
 
 const taskModel = getModelForClass(Task);
