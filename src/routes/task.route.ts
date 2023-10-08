@@ -17,6 +17,6 @@ router.delete("/:id", validate(deleteTaskSchema), deleteTaskHandler);
 
 router.get("/list", validate(listTasksSchema), listTasksHandler);
 
-router.put("/:id/complete", validate(completeTaskSchema), completeTaskHandler);
+router.patch("/:id/complete", validate(completeTaskSchema), completeTaskHandler);
 
 export default router;
