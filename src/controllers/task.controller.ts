@@ -22,15 +22,15 @@ if (process.env.NODE_ENV === 'production') {
 
 export const createTaskHandler = async (
   req: Request<{}, {}, CreateTaskInput>,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   try {
     const task = await createTask({
       title: req.body.title,
       description: req.body.description,
       dueDate: req.body.dueDate,
-      tags: req.body.tags
+      tags: req.body.tags,
+      userId: res.locals.user._id
     })
 
     res.status(201).json({
@@ -58,7 +58,8 @@ export const editTaskHandler = async (
       title: req.body.title,
       description: req.body.description,
       dueDate: req.body.dueDate,
-      tags: req.body.tags
+      tags: req.body.tags,
+      userId: res.locals.user._id
     });
 
     if (updatedTask) {
@@ -89,7 +90,7 @@ export const deleteTaskHandler = async (
 ) => {
   try {
     const taskId = req.params.id;
-    const deletedTask = await deleteTask(taskId);
+    const deletedTask = await deleteTask(taskId, res.locals.user._id);
 
     if (deletedTask) {
       res.status(200).json({
@@ -116,7 +117,7 @@ export const listTasksHandler = async (
   next: NextFunction
 ) => {
   try {
-    const tasks = await listTasks();
+    const tasks = await listTasks(res.locals.user._id);
 
     res.status(200).json({
       status: "success",
@@ -139,7 +140,7 @@ export const completeTaskHandler = async (
 ) => {
   try {
     const taskId = req.params.id;
-    const updatedTask = await completeTask(taskId);
+    const updatedTask = await completeTask(taskId, res.locals.user_id);
 
     if (updatedTask) {
       res.status(200).json({
