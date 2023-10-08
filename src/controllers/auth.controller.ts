@@ -38,10 +38,7 @@ export const registerHandler = async (
     });
   } catch (err: any) {
     if (err.code === 11000) {
-      return res.status(409).json({
-        status: 'fail',
-        message: 'Email already exist',
-      });
+      next(new AppError('Email already exist', 409));
     }
     next(err);
   }
