@@ -4,56 +4,59 @@ const listTasksResponseSchema = {
     example: 'success'
   },
   data: {
-    type: 'object',
-    properties: {
-      task: {
-        type: 'object',
-        properties: {
-          title: {
-            type: 'string',
-            example: 'Updated Task Title'
-          },
-          description: {
-            type: 'string',
-            example: 'Updated task description'
-          },
-          dueDate: {
-            type: 'string',
-            example: new Date().toString()
-          },
-          tags: {
-            type: 'array',
-            items: {
+    type: 'array',
+    items: {
+      type: 'object',
+      properties: {
+        tasks: {
+          type: 'object',
+          properties: {
+            title: {
               type: 'string',
-              example: ['#updatedtag']
+              example: 'Updated Task Title'
+            },
+            description: {
+              type: 'string',
+              example: 'Updated task description'
+            },
+            dueDate: {
+              type: 'string',
+              example: new Date().toString()
+            },
+            tags: {
+              type: 'array',
+              items: {
+                type: 'string',
+                example: ['#updatedtag']
+              }
+            },
+            completed: {
+              type: 'boolean',
+              example: false
+            },
+            _id: {
+              type: 'string',
+              example: '6520148f0cec6045e4d7627e'
+            },
+            userId: {
+              type: 'string',
+              example: '6520148f0cec6045e4d7627e'
+            },
+            createdAt: {
+              type: 'string',
+              example: '2023-10-06T14:07:11.215Z'
+            },
+            updatedAt: {
+              type: 'string',
+              example: '2023-10-06T14:07:11.215Z'
+            },
+            __v: {
+              type: 'number',
+              example: 0
             }
-          },
-          completed: {
-            type: 'boolean',
-            example: false
-          },
-          _id: {
-            type: 'string',
-            example: '6520148f0cec6045e4d7627e'
-          },
-          userId: {
-            type: 'string',
-            example: '6520148f0cec6045e4d7627e'
-          },
-          createdAt: {
-            type: 'string',
-            example: '2023-10-06T14:07:11.215Z'
-          },
-          updatedAt: {
-            type: 'string',
-            example: '2023-10-06T14:07:11.215Z'
-          },
-          __v: {
-            type: 'number',
-            example: 0
           }
         }
-      }
+      },
     }
   }
 };

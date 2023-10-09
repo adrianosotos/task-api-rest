@@ -2,6 +2,7 @@ import config from "config";
 import { CookieOptions, NextFunction, Request, Response } from "express";
 import { CreateTaskInput, EditTaskInput } from "../schemas/task.schema";
 import { completeTask, createTask, deleteTask, editTask, listTasks } from "../services/task.service";
+import AppError from "../utils/appError";
 
 const accessTokenCookieOptions: CookieOptions = {
   expires: new Date(
@@ -22,7 +23,8 @@ if (process.env.NODE_ENV === 'production') {
 
 export const createTaskHandler = async (
   req: Request<{}, {}, CreateTaskInput>,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
     const task = await createTask({
@@ -40,10 +42,7 @@ export const createTaskHandler = async (
       }
     })
   } catch (error: any) {
-    res.status(400).json({
-      status: 'fail',
-      message: 'Failed to create task'
-    });
+    next(new AppError('Failed to create task', 400));
   }
 };
 
@@ -70,16 +69,10 @@ export const editTaskHandler = async (
         }
       });
     } else {
-      res.status(404).json({
-        status: 'fail',
-        message: 'Task not found'
-      });
+      next(new AppError('Task not found', 404));
     }
   } catch (error: any) {
-    res.status(400).json({
-      status: 'fail',
-      message: 'Failed to update task'
-    });
+    next(new AppError('Failed to update task', 400));
   }
 };
 
@@ -98,21 +91,15 @@ export const deleteTaskHandler = async (
         message: "Task deleted successfully",
       });
     } else {
-      res.status(404).json({
-        status: "fail",
-        message: "Task not found",
-      });
+      next(new AppError('Task not found', 404));
     }
   } catch (error: any) {
-    res.status(400).json({
-      status: "fail",
-      message: "Failed to delete task",
-    });
+    next(new AppError('Failed to delete task', 400));
   }
 };
 
 export const listTasksHandler = async (
-  req: Request<{}, {}, {}>,
+  _req: Request<{}, {}, {}>,
   res: Response,
   next: NextFunction
 ) => {
@@ -122,14 +109,11 @@ export const listTasksHandler = async (
     res.status(200).json({
       status: "success",
       data: {
-        tasks,
+        tasks
       },
     });
   } catch (error: any) {
-    res.status(400).json({
-      status: "fail",
-      message: "Failed to list tasks",
-    });
+    next(new AppError('Failed to list tasks', 400));
   }
 };
 
@@ -140,7 +124,7 @@ export const completeTaskHandler = async (
 ) => {
   try {
     const taskId = req.params.id;
-    const updatedTask = await completeTask(taskId, res.locals.user_id);
+    const updatedTask = await completeTask(taskId, res.locals.user._id);
 
     if (updatedTask) {
       res.status(200).json({
@@ -151,15 +135,9 @@ export const completeTaskHandler = async (
         },
       });
     } else {
-      res.status(404).json({
-        status: "fail",
-        message: "Task not found",
-      });
+      next(new AppError('Task not found', 404));
     }
   } catch (error: any) {
-    res.status(400).json({
-      status: "fail",
-      message: "Failed to complete task",
-    });
+    next(new AppError('Failed to complete task', 400));
   }
 };

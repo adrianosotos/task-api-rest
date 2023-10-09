@@ -28,6 +28,7 @@ export const registerHandler = async (
     const user = await createUser({
       email: req.body.email,
       password: req.body.password,
+      role: req.body.role
     });
 
     res.status(201).json({

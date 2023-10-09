@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { findAllUsers } from '../services/user.service';
 
 export const getMeHandler = (
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -20,7 +20,7 @@ export const getMeHandler = (
 };
 
 export const getAllUsersHandler = async (
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {

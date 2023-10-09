@@ -7,7 +7,7 @@ import { User } from "./user.model";
   },
 })
 export class Task {
-  @prop({ required: true, select: false })
+  @prop({ required: true })
   title!: string;
 
   @prop()

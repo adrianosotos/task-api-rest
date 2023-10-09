@@ -9,7 +9,7 @@ export const editTask = async (taskId: string, input: Partial<Task>) => {
   const task = await taskModel.findOne({ _id: taskId, userId: input.userId });
 
   if (!task) {
-    throw new Error('Task not found');
+    return null;
   }
 
   const updatedTask = await taskModel.findByIdAndUpdate(
@@ -25,7 +25,7 @@ export const deleteTask = async (taskId: string, userId: string) => {
   const task = await taskModel.findOne({ _id: taskId, userId });
 
   if (!task) {
-    throw new Error('Task not found');
+    return null;
   }
 
   const deletedTask = await taskModel.findByIdAndDelete(taskId);
@@ -41,7 +41,7 @@ export const completeTask = async (taskId: string, userId: string) => {
   const task = await taskModel.findOne({ _id: taskId, userId });
 
   if (!task) {
-    throw new Error('Task not found');
+    return null;
   }
 
   const updatedTask = await taskModel.findByIdAndUpdate(
