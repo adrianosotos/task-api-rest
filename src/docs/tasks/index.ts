@@ -1,7 +1,7 @@
-import { completeTaskRoutes } from "./completeTask.docs";
+import { completeTaskRequestBody, completeTaskRoutes } from "./completeTask.docs";
 import { createTaskRequestBody, createTaskRoutes } from "./createTask.docs";
 import { listTasksRoutes } from "./listTasks.docs";
-import { editTaskRequestBody, editTaskRoutes } from "./tasks.docs";
+import { deleteTaskRequestBody, editTaskRequestBody, editTaskRoutes } from "./tasks.docs";
 
 export default {
   tag: {
@@ -15,6 +15,8 @@ export default {
   },
   schemas: {
     createTaskRequestBody,
-    editTaskRequestBody
+    editTaskRequestBody,
+    completeTaskRequestBody,
+    deleteTaskRequestBody
   }
 }

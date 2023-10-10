@@ -168,6 +168,16 @@ const editTask = {
   }
 };
 
+export const deleteTaskRequestBody = {
+  type: 'object',
+  properties: {
+    id: {
+      type: 'string',
+      example: '65231badb271b0c2ecc258a6'
+    }
+  }
+};
+
 const deleteTask = {
   tags: ['Tasks'],
   description: 'Deletes a task',
@@ -188,6 +198,16 @@ const deleteTask = {
       description: 'Task ID'
     }
   ],
+  requestBody: {
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/deleteTaskRequestBody'
+        }
+      }
+    },
+    required: true
+  },
   responses: {
     '200': {
       description: 'Task deleted successfully',

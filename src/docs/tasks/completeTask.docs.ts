@@ -1,3 +1,12 @@
+export const completeTaskRequestBody = {
+  type: 'object',
+  properties: {
+    id: {
+      type: 'string',
+      example: '65231badb271b0c2ecc258a6'
+    }
+  }
+};
 
 const completedTaskResponseSchema = {
   status: {
@@ -79,6 +88,16 @@ const completeTaskHandler = {
       }
     }
   ],
+  requestBody: {
+    content: {
+      'application/json': {
+        schema: {
+          $ref: '#/components/schemas/completeTaskRequestBody',
+        },
+      },
+    },
+    required: true,
+  },
   responses: {
     '200': {
       description: 'Task completed successfully',
